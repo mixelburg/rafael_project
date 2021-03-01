@@ -6,6 +6,14 @@
     background-color: #1e4258;
 }
 
+.bg-main-dark {
+    background-color: #303030;
+}
+
+.bg-main-dark-extra {
+    background-color: #222222;
+}
+
 .text-main {
     color: #d3d3d3;
 }

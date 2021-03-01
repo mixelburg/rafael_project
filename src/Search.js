@@ -6,6 +6,7 @@ class Search extends React.Component{
     state = {
         searchText: "",
         toLoad: 20,
+        isLoading: false,
         attackPatterns: [],
     }
 
@@ -32,6 +33,10 @@ class Search extends React.Component{
     }
 
     fetchData = (key, lim) => {
+        this.setState(prevState => {
+            prevState.isLoading = true
+            return prevState
+        })
         const requestMetadata = {
             method: 'POST',
             headers: {
@@ -45,6 +50,7 @@ class Search extends React.Component{
             .then(data => {
                 console.log(data)
                 this.setState(prevState => {
+                    prevState.isLoading = false
                     prevState.attackPatterns = data
                     return prevState
                 })
@@ -57,40 +63,43 @@ class Search extends React.Component{
 
         console.log(this.state.toLoad)
 
+
+
         return (
             <>
-                <div className="jumbotron-fluid">
-                    <form className="mx-4 mt-2 mb-3">
-                        <div className="row">
-                            <div className="form-group col-md-6">
-                                <input
-                                    name="searchText"
-                                    value={this.state.searchText}
-                                    onChange={this.handleChange}
-                                    className="form-control"
-                                    type="search"
-                                    placeholder="Type to search"
-                                />
-                            </div>
-                            <div className="form-group col-md-auto">
-                                <div className="input-group">
-                                    <span className="input-group-text">cards to load: </span>
-                                    <select
-                                        value={this.state.toLoad}
-                                        onChange={this.handleChange}
-                                        name="toLoad"
-                                        className="form-select w-auto"
-                                    >
-                                        <option value={50}>50</option>
-                                        <option value={10}>10</option>
-                                        <option value={20}>20</option>
-                                        <option value={100}>100</option>
-                                        <option value={0}>All</option>
-                                    </select>
-                                </div>
-                            </div>
+                <div className="rounded bg-main-dark mt-2 mb-3 mx-2 ">
+                    <div className="row g-0 px-4 py-3">
+                        <div className="col-6 d-flex">
+                            <input
+                                name="searchText"
+                                value={this.state.searchText}
+                                onChange={this.handleChange}
+                                className="form-control me-1"
+                                type="search"
+                                placeholder="Type to search"
+                            />
                         </div>
-                    </form>
+                        <div className="col-auto d-flex align-items-center ms-2">
+                            <div className="spinner-border text-primary" role="status"
+                                 style={{visibility: this.state.isLoading ? "visible" : "hidden"}}/>
+                        </div>
+                        <div className="col-auto d-flex ms-2">
+                            <label className="col-form-label text-white me-1">cards to load: </label>
+                            <select
+                                value={this.state.toLoad}
+                                onChange={this.handleChange}
+                                name="toLoad"
+                                className="form-select w-auto"
+                            >
+                                <option value={50}>50</option>
+                                <option value={10}>10</option>
+                                <option value={20}>20</option>
+                                <option value={100}>100</option>
+                                <option value={0}>All</option>
+                            </select>
+                        </div>
+
+                    </div>
                 </div>
 
                 <div className="row row-cols-1 row-cols-md-4 g-3 mx-3 mb-4">
