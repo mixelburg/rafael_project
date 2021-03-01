@@ -4,8 +4,9 @@ import AttackCardModal from "./AttackCardModal";
 
 const AttackCard = (props) => {
     const wordTarget = 200
-    let description = props.data["description"].slice(0, wordTarget)
-    let detection = props.data["x_mitre_detection"].slice(0, wordTarget)
+    const description = props.data["description"].slice(0, wordTarget)
+    const detection = props.data["x_mitre_detection"].slice(0, wordTarget)
+
 
     const [isOpen, setIsOpen] = React.useState(false);
 
@@ -31,10 +32,13 @@ const AttackCard = (props) => {
                         <p>{description}{description.length === 200 ? "..." : ""}</p>
 
                         <label>platforms: </label>
-                        <p>{props.data["x_mitre_platforms"].toString()}</p>
+                        <p>{props.data["x_mitre_platforms"].join(", ")}</p>
 
                         <label>detection: </label>
                         <p>{detection}{description.length === 200 ? "...": ""}</p>
+
+                        <label>phases: </label>
+                        <p>{props.data["phase_names"].join(", ")}</p>
                     </div>
                 </div>
             </article>

@@ -1,11 +1,12 @@
 import React from "react";
 
 import AttackCard from "./AttackCard";
+import ChatBot from "./ChatBot";
 
 class Search extends React.Component{
     state = {
         searchText: "",
-        toLoad: 20,
+        toLoad: 10,
         isLoading: false,
         attackPatterns: [],
     }
@@ -67,7 +68,7 @@ class Search extends React.Component{
 
         return (
             <>
-                <div className="rounded bg-main-dark mt-2 mb-3 mx-2 ">
+                <div className="rounded bg-main-dark mt-2 mb-3 mx-2">
                     <div className="row g-0 px-4 py-3">
                         <div className="col-6 d-flex">
                             <input
@@ -98,15 +99,14 @@ class Search extends React.Component{
                                 <option value={0}>All</option>
                             </select>
                         </div>
-
                     </div>
                 </div>
 
-                <div className="row row-cols-1 row-cols-md-4 g-3 mx-3 mb-4">
+                <div className="row row-cols-md-4 g-3 px-5">
                     {attacks}
                 </div>
 
-
+                <ChatBot/>
             </>
 
         )

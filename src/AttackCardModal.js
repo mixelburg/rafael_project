@@ -13,15 +13,17 @@ const AttackCardModal = (props) => {
                         </div>
                     </div>
                     <div className="modal-body text-main bg-main-darkblue">
-
                         <label>description: </label>
                         <p>{props.data["description"]}</p>
 
                         <label>platforms: </label>
-                        <p>{props.data["x_mitre_platforms"].toString()}</p>
+                        <p>{props.data["x_mitre_platforms"].join(", ")}</p>
 
                         <label>detection: </label>
                         <p>{props.data["x_mitre_detection"]}</p>
+
+                        <label>phases: </label>
+                        <p>{props.data["phase_names"].join(", ")}</p>
                     </div>
                 </div>
             </Modal>

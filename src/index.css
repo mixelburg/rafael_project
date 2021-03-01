@@ -31,3 +31,11 @@
     -webkit-transform: scale(1.05); /* Safari 3-8 */
     transform: scale(1.05);
 }
+
+.chatbot-btn {
+
+}
+
+*.chatbot-btn:active, .chatbot-btn:focus, .chatbot-btn:active:focus {
+    outline: none !important;
+}
