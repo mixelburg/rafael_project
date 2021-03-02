@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import ChatBotBox from "./ChatBotBox";
 
 const ChatBot = () => {
-    let [visible, setVisible] = useState(true)
+    let [visible, setVisible] = useState(false)
 
 
     const handleClick = () => {

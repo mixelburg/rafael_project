@@ -7,11 +7,11 @@ const AttackCard = (props) => {
     const description = props.data["description"].slice(0, wordTarget)
     const detection = props.data["x_mitre_detection"].slice(0, wordTarget)
 
-
     const [isOpen, setIsOpen] = React.useState(false);
 
     const showModal = () => {
         setIsOpen(true);
+        props.onClick(props.data);
     };
 
     const hideModal = () => {
@@ -42,9 +42,7 @@ const AttackCard = (props) => {
                     </div>
                 </div>
             </article>
-            <div className="card-footer">
-                <AttackCardModal data={props.data} isOpen={isOpen} hideModal={hideModal}/>
-            </div>
+            <AttackCardModal data={props.data} isOpen={isOpen} hideModal={hideModal}/>
         </div>
 
     )
