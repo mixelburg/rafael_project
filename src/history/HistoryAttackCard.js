@@ -15,7 +15,7 @@ const HistoryAttackCard = (props) => {
     return (
         <>
             <div className="pb-2">
-                <article className="card bg-main-blue">
+                <article className="card bg-main-grey">
                     <div className="card-header pb-0">
                         <p className="text-main-secondary">id: {props.data["id"]}</p>
                         <button
@@ -23,7 +23,7 @@ const HistoryAttackCard = (props) => {
                             className="btn btn-close position-absolute end-0 top-0"
                             onClick={() => props.close(props.data)}/>
                     </div>
-                    <div className="card-body rounded bg-main-darkblue text-main m-1">
+                    <div className="card-body rounded bg-main-grey-extra text-main m-1">
                         <h5 className="card-title link" onClick={showModal}>{props.data["name"]}</h5>
                     </div>
                 </article>
