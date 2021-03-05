@@ -4,7 +4,6 @@ import ChatBotBox from "./ChatBotBox";
 const ChatBot = () => {
     let [visible, setVisible] = useState(false)
 
-
     const handleClick = () => {
         setVisible(!visible)
     }

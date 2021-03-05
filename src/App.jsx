@@ -10,7 +10,6 @@ class App extends React.Component{
         toLoad: 10,
         isLoading: false,
         attackPatterns: [],
-        searchHistory: new Set(),
     }
 
     serverUrl = "http://localhost:5000"
@@ -60,36 +59,11 @@ class App extends React.Component{
             })
     }
 
-    pushHistory = (data) => {
-        this.setState(prevState => {
-            prevState.searchHistory.add(data)
-            return prevState
-        })
-    }
-
-    remHistory = (data) => {
-        this.setState(prevState => {
-            prevState.searchHistory.delete(data)
-            return prevState
-        })
-    }
-
-    clearHistory = () => {
-        this.setState(prevState => {
-            prevState.searchHistory.clear()
-            return prevState
-        })
-    }
-
     render() {
-        console.log(this.state.toLoad)
-
         return (
             <>
                 <MainNavbar data={this.state} handleChange={this.handleChange}/>
-
-                <MainGrid attackPatterns={this.state.attackPatterns}/>
-
+                <MainGrid attackPatterns={this.state.attackPatterns} isLoading={this.state.isLoading}/>
                 <ChatBot/>
             </>
 

@@ -1,7 +1,7 @@
 import React from "react";
 import AttackCardModal from "../attack_card/AttackCardModal";
 
-const HistoryAttackCard = (props) => {
+const SearchHistoryCard = (props) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     const showModal = () => {
@@ -33,4 +33,4 @@ const HistoryAttackCard = (props) => {
     )
 }
 
-export default HistoryAttackCard
+export default SearchHistoryCard

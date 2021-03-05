@@ -15,11 +15,11 @@
 }
 
 .bg-main-grey {
-    background-color: #616161;
+    background-color: #455A64;
 }
 
 .bg-main-grey-extra {
-    background-color: #424242;
+    background-color: #37474F;
 }
 
 .btn-main-danger-outline {
@@ -52,4 +52,22 @@
 
 *.chatbot-btn:active, .chatbot-btn:focus, .chatbot-btn:active:focus {
     outline: none !important;
+}
+
+.main-item-enter {
+    opacity: 0;
+}
+
+.main-item-enter-active {
+    opacity: 1;
+    transition: opacity 200ms ease-in;
+}
+
+.main-item-exit {
+    opacity: 1;
+}
+
+.main-item-exit-active {
+    opacity: 0;
+    transition: opacity 200ms ease-in;
 }
