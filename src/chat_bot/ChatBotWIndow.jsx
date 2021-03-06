@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import ChatBotBox from "./ChatBotBox";
 
-const ChatBot = () => {
-    let [visible, setVisible] = useState(false)
+const ChatBotWIndow = () => {
+    let [visible, setVisible] = useState(true)
 
     const handleClick = () => {
         setVisible(!visible)
@@ -21,4 +21,4 @@ const ChatBot = () => {
     )
 }
 
-export default ChatBot
+export default ChatBotWIndow

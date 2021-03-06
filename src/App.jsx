@@ -1,6 +1,6 @@
 import React from "react";
 
-import ChatBot from "./chat_bot/ChatBot";
+import ChatBotWIndow from "./chat_bot/ChatBotWIndow";
 import MainNavbar from "./main/MainNavbar";
 import MainGrid from "./main/MainGrid";
 
@@ -64,7 +64,7 @@ class App extends React.Component{
             <>
                 <MainNavbar data={this.state} handleChange={this.handleChange}/>
                 <MainGrid attackPatterns={this.state.attackPatterns} isLoading={this.state.isLoading}/>
-                <ChatBot/>
+                <ChatBotWIndow/>
             </>
 
         )

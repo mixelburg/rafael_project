@@ -1,33 +1,45 @@
 import React from "react";
+import {Chatbot} from "react-chatbot-kit";
+import { createChatBotMessage } from "react-chatbot-kit";
 
 
-function ChatBotBox() {
-    return (
-        <div className="mb-4 pe-3">
-            <article className="card bg-main-blue stretched-link">
-                <div className="card-header">
-                    <p className="text-main-secondary">id: some id</p>
-                </div>
-                <div className="card-body rounded bg-main-darkblue text-main">
-                    <h5 className="card-title">some name</h5>
-
-                    <div className="card-text">
-                        <label>description: </label>
-                        <p>some description</p>
-
-                        <label>platforms: </label>
-                        <p>some data</p>
-
-                        <label>detection: </label>
-                        <p>some detection</p>
-
-                        <label>phases: </label>
-                        <p>some phases</p>
-                    </div>
-                </div>
-            </article>
-        </div>
-    )
-}
+const ChatBotBox = () => (
+    <div className="mb-4 pe-3">
+        <Chatbot config={config} messageParser={MessageParser} actionProvider={ActionProvider}/>
+    </div>
+);
 
 export default ChatBotBox
+
+class MessageParser {
+    constructor(actionProvider, state) {
+        this.actionProvider = actionProvider;
+        this.state = state;
+    }
+
+    parse(message) {
+        console.log(message)
+    }
+}
+
+
+class ActionProvider {
+    constructor(createChatBotMessage, setStateFunc, createClientMessage) {
+        this.createChatBotMessage = createChatBotMessage;
+        this.setState = setStateFunc;
+        this.createClientMessage = createClientMessage;
+    }
+}
+
+
+const botName = "PAPA"
+const config = {
+    botName: `the ${botName}`,
+    initialMessages: [createChatBotMessage(`Hi I'm ${botName}`)],
+
+    customStyles: {
+
+    },
+
+
+}
