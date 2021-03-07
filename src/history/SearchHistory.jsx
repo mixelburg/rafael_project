@@ -1,15 +1,14 @@
 import React from "react";
 import SearchHistoryCard from "./SearchHistoryCard";
-import {TransitionGroup, CSSTransition} from "react-transition-group";
+import {CSSTransition, TransitionGroup} from "react-transition-group";
 
-const SearchHistory = (props) => {
+const SearchHistory = props => {
     const cards = [...props.data].map(pattern => (
-        <CSSTransition timeout={500} classNames="main-item" key={pattern["id"]}>
-            <SearchHistoryCard data={pattern} close={props.close}/>
-        </CSSTransition>
+            <CSSTransition timeout={500} classNames="main-item" key={pattern["id"]}>
+                <SearchHistoryCard data={pattern} close={props.close}/>
+            </CSSTransition>
         )
     )
-
     return (
         <>
             <div className="d-flex mb-3">
@@ -23,7 +22,6 @@ const SearchHistory = (props) => {
             <TransitionGroup>
                 {cards}
             </TransitionGroup>
-
         </>
     )
 }
