@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 
 const AttackCardModal = (props) => {
     return (
-        <div>
+        <>
             <Modal show={props.isOpen} onHide={props.hideModal} size="lg" centered>
                 <div className="modal-content bg-main-blue">
                     <div className="modal-header text-main-secondary">
@@ -27,7 +27,7 @@ const AttackCardModal = (props) => {
                     </div>
                 </div>
             </Modal>
-        </div>
+        </>
     );
 };
 

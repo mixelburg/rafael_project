@@ -1,8 +1,9 @@
 import React from "react";
 
-import ChatBotWIndow from "./chat_bot/ChatBotWIndow";
+import ChatBotWindow from "./main/ChatBotWindow";
 import MainNavbar from "./main/MainNavbar";
 import MainGrid from "./main/MainGrid";
+import fetchData from "./util";
 
 class App extends React.Component{
     state = {
@@ -12,10 +13,8 @@ class App extends React.Component{
         attackPatterns: [],
     }
 
-    serverUrl = "http://localhost:5000"
-
     componentDidMount = () => {
-        this.fetchData("", this.state.toLoad)
+        this.getData("", this.state.toLoad)
     }
 
     handleChange = (event) => {
@@ -23,9 +22,9 @@ class App extends React.Component{
 
         if (name === "toLoad") {
             value = parseInt(value, 10)
-            this.fetchData(this.state.searchText, value)
+            this.getData(this.state.searchText, value)
         } else {
-            this.fetchData(value, this.state.toLoad)
+            this.getData(value, this.state.toLoad)
         }
 
         this.setState(prevState => {
@@ -34,29 +33,17 @@ class App extends React.Component{
         })
     }
 
-    fetchData = (key, lim) => {
+    getData = async (key, lim) => {
         this.setState(prevState => {
-            prevState.isLoading = true
+            prevState.isLoading = true;
             return prevState
         })
-        const requestMetadata = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ key: key, lim: lim })
-        };
-
-        fetch(this.serverUrl, requestMetadata)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                this.setState(prevState => {
-                    prevState.isLoading = false
-                    prevState.attackPatterns = data
-                    return prevState
-                })
-            })
+        const data = await fetchData(key, lim)
+        this.setState(prevState => {
+            prevState.isLoading = false;
+            prevState.attackPatterns = data
+            return prevState
+        })
     }
 
     render() {
@@ -64,9 +51,8 @@ class App extends React.Component{
             <>
                 <MainNavbar data={this.state} handleChange={this.handleChange}/>
                 <MainGrid attackPatterns={this.state.attackPatterns} isLoading={this.state.isLoading}/>
-                <ChatBotWIndow/>
+                <ChatBotWindow/>
             </>
-
         )
     }
 }
