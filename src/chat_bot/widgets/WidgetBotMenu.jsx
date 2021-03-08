@@ -6,6 +6,7 @@ const WidgetBotMenu = (props) => {
             <li>/menu</li>
             <li>/find {"<query>"} - search db</li>
             <li>/check {"<md5>"} - check md5, sha1 or sha256</li>
+            <li>/cuckooFile - check file</li>
         </ul>
     )
 }

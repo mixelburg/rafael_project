@@ -19,6 +19,9 @@ export class MessageParser {
             case "/check":
                 this.actionProvider.handleCheck(param)
                 break
+            case "/cuckooFile":
+                this.actionProvider.handleCuckooFile()
+                break
             default:
                 this.actionProvider.default(command)
                 break

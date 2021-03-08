@@ -1,6 +1,7 @@
 import fetchData from "../../util";
 import WidgetSearchResult from "../widgets/search/WidgetSearchResult";
 import WidgetCheckResult from "../widgets/check/WidgetCheckResult";
+import WidgetCuckoo from "../widgets/cuckoo/WidgetCuckoo";
 
 export class ActionProvider {
     constructor(createChatBotMessage, setStateFunc, createClientMessage) {
@@ -47,5 +48,10 @@ export class ActionProvider {
                     this.setChatBotMessage(this.createChatBotMessage(msg))
                 }
             })
+    }
+
+    handleCuckooFile = () => {
+        const msg = <WidgetCuckoo/>
+        this.setChatBotMessage(this.createChatBotMessage(msg))
     }
 }
