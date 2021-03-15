@@ -45,47 +45,50 @@ const WidgetCuckoo = () => {
 
     return (
         <>
-            {
-                phase === "init" &&
-                    <div>
-                        <div className="file-input mb-1">
-                            <input className="file" id="file" type="file" onChange={handleChange}/>
-                            <label htmlFor="file" className="rounded">select file</label>
-                        </div>
-                        {
-                            selectedFile &&
+            {(() => {
+                switch (phase) {
+                    case "init":
+                        return (
                             <div>
-                            <div style={{fontSize: "0.9rem"}}>name: {selectedFile.name}</div>
-                            <div style={{fontSize: "0.9rem"}}>type: {selectedFile.type}</div>
+                                <div className="file-input mb-1">
+                                    <input className="file" id="file" type="file" onChange={handleChange}/>
+                                    <label htmlFor="file" className="rounded">select file</label>
+                                </div>
+                                {
+                                    selectedFile &&
+                                    <div>
+                                        <div style={{fontSize: "0.9rem"}}>name: {selectedFile.name}</div>
+                                        <div style={{fontSize: "0.9rem"}}>type: {selectedFile.type}</div>
+                                    </div>
+                                }
+                                <button className="btn-sm btn-primary" onClick={handleSubmition}>submit</button>
                             </div>
-                        }
-                        <button className="btn-sm btn-primary" onClick={handleSubmition}>submit</button>
-                    </div>
-            }
-
-            {
-                phase === "uploaded" &&
-                    <div>
-                        <div className="spinner-border" style={{width: "4rem", height: "4rem"}} role="status"/>
-                        <div>Loading...</div>
-                    </div>
-            }
-
-            {
-                phase === "processing" &&
-                    <div>
-                        <div className="spinner-border text-success" style={{width: "4rem", height: "4rem"}} role="status"/>
-                        <div>Processing...</div>
-                    </div>
-            }
-
-            {
-                phase === "finished" &&
-                    <div>
-                        <p className="text-success">{selectedFile["info"]["score"]}/10</p>
-                        <CuckooModal data={selectedFile} server={serverIp}/>
-                    </div>
-            }
+                        )
+                    case "uploaded":
+                        return (
+                            <div>
+                                <div className="spinner-border" style={{width: "4rem", height: "4rem"}} role="status"/>
+                                <div>Loading...</div>
+                            </div>
+                        )
+                    case "processing":
+                        return (
+                            <div>
+                                <div className="spinner-border text-success" style={{width: "4rem", height: "4rem"}} role="status"/>
+                                <div>Processing...</div>
+                            </div>
+                        )
+                    case "finished":
+                        return (
+                            <div>
+                                <p className="text-success">{selectedFile["info"]["score"]}/10</p>
+                                <CuckooModal data={selectedFile} server={serverIp}/>
+                            </div>
+                        )
+                    default:
+                        return null
+                }
+            })()}
         </>
     )
 }

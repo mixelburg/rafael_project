@@ -5,7 +5,7 @@ import MainNavbar from "./main/MainNavbar";
 import MainGrid from "./main/MainGrid";
 import fetchData from "./util";
 
-const App = (props) => {
+const App = () => {
     const [searchText, setSearchText] = useState("")
     const [toLoad, setToLoad] = useState(10)
     const [isLoading, setIsLoading] = useState(false)
