@@ -1,22 +1,50 @@
-import React, {useCallback, useState} from "react";
+import React, {useEffect, useState} from "react";
 import SearchHistory from "../history/SearchHistory";
 import AttackCard from "../attack_card/AttackCard";
 import {CSSTransition} from "react-transition-group";
+import storage from "local-storage-fallback"
+
+const getInitHistory = () => {
+    const savedHistory = storage.getItem('history')
+    return savedHistory ? JSON.parse(savedHistory) : []
+}
 
 const MainGrid = (props) => {
-    const [searchHistory, setSearchHistory] = useState(new Set())
+    const [searchHistory, setSearchHistory] = useState(getInitHistory)
 
-    const pushHistory = useCallback((data) => {
-        setSearchHistory(prevState => new Set(prevState.add(data)))
-    }, [setSearchHistory])
+    const pushHistory = (data) => {
+        setSearchHistory(prevState => {
+            if (prevState.filter(x => x.id === data.id).length !== 0)
+                return prevState
 
-    const remHistory = useCallback((data) => {
-        setSearchHistory(prevState => new Set([...prevState].filter(x => x !== data)))
-    }, [setSearchHistory])
+            return [...prevState, data]
+        })
+    }
 
-    const clearHistory = useCallback(() => {
-        setSearchHistory(new Set())
-    }, [setSearchHistory])
+    const remHistory = (data) => {
+        setSearchHistory(prevState => prevState.filter(x => x["id"] !== data["id"]))
+    }
+
+    const clearHistory = () => {
+        setSearchHistory([])
+    }
+
+    useEffect(() => {
+        storage.setItem('history', JSON.stringify([...searchHistory]))
+    }, [searchHistory])
+
+    useEffect(() => {
+        window.addEventListener("focus", onFocus)
+
+        return () => {
+            window.removeEventListener("focus", onFocus)
+        }
+    })
+
+    const onFocus = () => {
+        setSearchHistory(getInitHistory())
+        props.onFocus()
+    }
 
     let attacks = props.attackPatterns.map(pattern => (
             <AttackCard data={pattern} key={pattern["id"]} onClick={pushHistory}/>

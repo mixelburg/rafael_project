@@ -3,7 +3,7 @@ import SearchHistoryCard from "./SearchHistoryCard";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 
 const SearchHistory = props => {
-    const cards = [...props.data].map(pattern => (
+    const cards = props.data.map(pattern => (
             <CSSTransition timeout={500} classNames="main-item" key={pattern["id"]}>
                 <SearchHistoryCard data={pattern} close={props.close}/>
             </CSSTransition>

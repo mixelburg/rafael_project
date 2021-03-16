@@ -2,7 +2,7 @@ import React from "react";
 
 import AttackCardModal from "./AttackCardModal";
 
-const AttackCard = React.memo((props) => {
+const AttackCard = (props) => {
     const wordTarget = 200
     const description = props.data["description"].slice(0, wordTarget)
     const detection = props.data["x_mitre_detection"].slice(0, wordTarget)
@@ -17,6 +17,7 @@ const AttackCard = React.memo((props) => {
     const hideModal = () => {
         setIsOpen(false);
     };
+
     return(
         <div className="col">
             <article className="zoom-main card h-100 bg-main-blue stretched-link" onClick={showModal}>
@@ -45,8 +46,8 @@ const AttackCard = React.memo((props) => {
         </div>
 
     )
-}, ((prevProps, nextProps) => {
-    return JSON.stringify(prevProps) === JSON.stringify(nextProps)
-}))
+}
 
-export default AttackCard
+export default React.memo(AttackCard, (prevProps, nextProps) => {
+    return JSON.stringify(prevProps) === JSON.stringify(nextProps)
+})
