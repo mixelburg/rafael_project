@@ -19,12 +19,12 @@ const MainGrid = (props) => {
     }, [setSearchHistory])
 
     let attacks = props.attackPatterns.map(pattern => (
-            <AttackCard data={pattern} key={pattern["id"]} onClick={pushHistory} />
+            <AttackCard data={pattern} key={pattern["id"]} onClick={pushHistory}/>
         )
     )
 
-    return(
-        <div className="row g-4 mx-3 mb-5">
+    return (
+        <div className="row g-4 mx-3 mb-5 ">
             <div className="col col-10">
                 <CSSTransition in={!props.isLoading} timeout={100000} classNames="main-item">
                     <div className="row row-cols-md-3 g-3">

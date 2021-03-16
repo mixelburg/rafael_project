@@ -80,7 +80,6 @@
 }
 
 .file-input label {
-    display: block;
     position: relative;
     width: 5rem;
     height: 2rem;
@@ -98,3 +97,4 @@ input:hover + label,
 input:focus + label {
     transform: scale(1.02);
 }
+

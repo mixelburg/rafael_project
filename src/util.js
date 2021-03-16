@@ -1,4 +1,4 @@
-const serverUrl = "http://localhost:5000"
+const serverUrl = "http://192.168.1.10:5000/find"
 
 const fetchData = async (key, lim) => {
     const requestMetadata = {
