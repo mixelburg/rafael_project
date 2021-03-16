@@ -11,7 +11,7 @@ const SearchHistory = props => {
     )
     return (
         <>
-            <div className="d-flex mb-3">
+            <div className="d-flex bg-main-dark rounded mb-3 p-2">
                 <label className="fs-3 text-main me-auto">history: </label>
                 <button className="btn btn-danger btn-main-danger-outline" onClick={props.clear}>
                     clear
