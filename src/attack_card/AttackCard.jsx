@@ -3,12 +3,14 @@ import React from "react";
 import AttackCardModal from "./AttackCardModal";
 
 const AttackCard = (props) => {
+    // char limit to be displayed
     const wordTarget = 200
     const description = props.data["description"].slice(0, wordTarget)
     const detection = props.data["x_mitre_detection"].slice(0, wordTarget)
 
     const [isOpen, setIsOpen] = React.useState(false);
 
+    // modal controls
     const showModal = () => {
         setIsOpen(true);
         props.onClick(props.data);
@@ -20,6 +22,7 @@ const AttackCard = (props) => {
 
     return(
         <div className="col">
+            {/*short data*/}
             <article className="zoom-main card h-100 bg-main-blue stretched-link" onClick={showModal}>
                 <div className="card-header">
                     <p className="text-main-secondary">id: {props.data["id"]}</p>
@@ -42,6 +45,7 @@ const AttackCard = (props) => {
                     </div>
                 </div>
             </article>
+            {/*modal with complete data*/}
             <AttackCardModal data={props.data} isOpen={isOpen} hideModal={hideModal}/>
         </div>
 

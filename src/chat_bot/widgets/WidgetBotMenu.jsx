@@ -1,6 +1,7 @@
 import React from "react";
 
-const WidgetBotMenu = (props) => {
+// main bot menu
+const WidgetBotMenu = () => {
     return (
         <ul className="bg-info rounded">
             <li>/menu</li>

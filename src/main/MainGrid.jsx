@@ -4,6 +4,7 @@ import AttackCard from "../attack_card/AttackCard";
 import {CSSTransition} from "react-transition-group";
 import storage from "local-storage-fallback"
 
+// gets initial history from browser window
 const getInitHistory = () => {
     const savedHistory = storage.getItem('history')
     return savedHistory ? JSON.parse(savedHistory) : []
@@ -12,6 +13,7 @@ const getInitHistory = () => {
 const MainGrid = (props) => {
     const [searchHistory, setSearchHistory] = useState(getInitHistory)
 
+    // adds card to history
     const pushHistory = (data) => {
         setSearchHistory(prevState => {
             if (prevState.filter(x => x.id === data.id).length !== 0)
@@ -29,10 +31,12 @@ const MainGrid = (props) => {
         setSearchHistory([])
     }
 
+    // stores history in browser storage on change
     useEffect(() => {
         storage.setItem('history', JSON.stringify([...searchHistory]))
     }, [searchHistory])
 
+    // adds focus listeners on component mount
     useEffect(() => {
         window.addEventListener("focus", onFocus)
 
@@ -41,6 +45,7 @@ const MainGrid = (props) => {
         }
     })
 
+    // gets history from browser storage on window focus
     const onFocus = () => {
         setSearchHistory(getInitHistory())
         props.onFocus()
@@ -53,6 +58,7 @@ const MainGrid = (props) => {
 
     return (
         <div className="row g-4 mx-3 mb-5 ">
+            {/*main grid items*/}
             <div className="col col-10">
                 <CSSTransition in={!props.isLoading} timeout={100000} classNames="main-item">
                     <div className="row row-cols-md-3 g-3">
@@ -61,6 +67,7 @@ const MainGrid = (props) => {
                 </CSSTransition>
             </div>
 
+            {/*search history*/}
             <div className="col col-2">
                 <SearchHistory data={searchHistory} close={remHistory} clear={clearHistory}/>
             </div>

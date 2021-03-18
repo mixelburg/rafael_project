@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// simple styling library
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import 'masonry-layout/dist/masonry.pkgd.min'
-import './index.css'
+// own styling
+import './static/index.css'
 
 ReactDOM.render(
     <React.StrictMode>

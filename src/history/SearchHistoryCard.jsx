@@ -4,6 +4,7 @@ import AttackCardModal from "../attack_card/AttackCardModal";
 const SearchHistoryCard = (props) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
+    // modal controls
     const showModal = () => {
         setIsOpen(true);
     };
@@ -15,6 +16,7 @@ const SearchHistoryCard = (props) => {
     return (
         <>
             <div className="pb-2">
+                {/*short info*/}
                 <article className="card bg-main-grey">
                     <div className="card-header pb-0">
                         <p className="text-main-secondary">id: {props.data["id"]}</p>
@@ -27,6 +29,7 @@ const SearchHistoryCard = (props) => {
                         <h5 className="card-title link" onClick={showModal}>{props.data["name"]}</h5>
                     </div>
                 </article>
+                {/*modal with full info*/}
                 <AttackCardModal data={props.data} isOpen={isOpen} hideModal={hideModal}/>
             </div>
         </>

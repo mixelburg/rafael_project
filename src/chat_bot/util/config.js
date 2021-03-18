@@ -5,6 +5,7 @@ import BotChatMessage from "../bot_components/BotChatMessage";
 import UserChatMessage from "../bot_components/UserChatMessage";
 import BotAvatar from "../bot_components/BotAvatar";
 
+// bot config
 const botName = "PAPA"
 const chatBotConfig = {
     botName: `the ${botName}`,

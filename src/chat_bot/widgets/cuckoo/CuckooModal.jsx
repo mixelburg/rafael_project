@@ -5,6 +5,7 @@ import {buildStyles, CircularProgressbarWithChildren} from "react-circular-progr
 const CuckooModal = (props) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
+    // modal controls
     const showModal = () => {
         setIsOpen(true);
     };
@@ -13,9 +14,11 @@ const CuckooModal = (props) => {
         setIsOpen(false);
     };
 
+    // file data
     const score = props.data["info"]["score"]
     const file = props.data["target"]["file"]
 
+    // format data from bytes to normal units
     const formatBytes = (bytes, decimals = 2) => {
         if (bytes === 0) return '0 Bytes';
 
@@ -30,7 +33,9 @@ const CuckooModal = (props) => {
 
     return (
         <>
+            {/*button to chow modal*/}
             <button className="btn-primary rounded" onClick={showModal}>show more</button>
+            {/*modal*/}
             <Modal show={isOpen} onHide={hideModal} size="lg" centered>
                 <div className="modal-content bg-main-blue">
                     <div className="modal-header text-main-secondary">

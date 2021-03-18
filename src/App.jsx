@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {createGlobalStyle, ThemeProvider} from "styled-components";
 import storage from "local-storage-fallback"
 
@@ -7,12 +7,13 @@ import MainNavbar from "./main/MainNavbar";
 import MainGrid from "./main/MainGrid";
 import fetchData from "./util";
 
+// global style for changing theme
 const GlobalStyle = createGlobalStyle`
     body {
       background-color: ${props => props.theme.mode === 'dark' ? "#222222" : "#80CBC4"};
     }
 `
-
+// returns initial theme from browser storage
 const getInitTheme = () => {
     const savedTheme = storage.getItem("theme")
     return savedTheme ? JSON.parse(savedTheme) : { mode: "dark" }
@@ -25,6 +26,7 @@ const App = () => {
     const [attackPatterns, setAttackPatterns] = useState([])
     const [theme, setTheme] = useState(getInitTheme)
 
+    // loads data on search box change
     useEffect(() => {
         setIsLoading(true)
         fetchData(searchText, toLoad).then(data => {
@@ -33,17 +35,20 @@ const App = () => {
         })
     }, [searchText, toLoad])
 
+    // stores theme on change
     useEffect(() => {
         storage.setItem('theme', JSON.stringify(theme))
     }, [theme])
 
-    const onFocus = useCallback(() => {
+    // returns initial theme
+    const onFocus = () => {
         setTheme(getInitTheme())
-    }, [setTheme])
+    }
 
-    const changeTheme = useCallback(() => {
+    // changes the theme
+    const changeTheme = () => {
         setTheme({ mode: theme.mode === "light" ? "dark" : "light"})
-    }, [theme, setTheme])
+    }
 
     return (
         <ThemeProvider theme={theme}>

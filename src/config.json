@@ -1,0 +1,6 @@
+{
+  "main_server_url": "http://192.168.1.88:5000/find",
+  "cuckoo_server_url": "http://191.168.1.27:8090/",
+  "virusTotal_api_url": "https://www.virustotal.com/vtapi/v2/file/report",
+  "virusTotal_api_key": "f23be2e9a0d8c6b7f13c0dd27384f16e61ceca128df566845938cad3e3459d2f"
+}

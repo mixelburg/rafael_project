@@ -5,6 +5,7 @@ import {buildStyles, CircularProgressbarWithChildren} from "react-circular-progr
 const CheckResultModal = (props) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
+    // modal controls
     const showModal = () => {
         setIsOpen(true);
     };
@@ -13,6 +14,7 @@ const CheckResultModal = (props) => {
         setIsOpen(false);
     };
 
+    // create table with scan results
     const tableBody = Object.keys(props.data["scans"]).map((key, index) => {
         const style = props.data["scans"][key]["detected"] ? "text-success" : "text-danger"
         return (
@@ -28,12 +30,16 @@ const CheckResultModal = (props) => {
         )
     })
 
+
+    // check data
     const positive = props.data["positives"]
     const total = props.data["total"]
 
     return (
         <>
+            {/*button to open the modal*/}
             <button className="btn-primary rounded" onClick={showModal}>show more</button>
+            {/*modal*/}
             <Modal show={isOpen} onHide={hideModal} size="lg" centered>
                 <div className="modal-content bg-main-blue">
                     <div className="modal-header text-main-secondary">
@@ -48,6 +54,8 @@ const CheckResultModal = (props) => {
                                 <p>sha1: {props.data["sha1"]}</p>
                                 <p>sha265: {props.data["sha256"]}</p>
                             </div>
+
+                            {/*circle progress bar*/}
                             <div style={{width: "20%", height: "20%"}}>
                                 <CircularProgressbarWithChildren value={positive} maxValue={total}
                                      styles={buildStyles({

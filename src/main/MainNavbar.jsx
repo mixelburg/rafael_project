@@ -6,6 +6,7 @@ const MainNavbar = (props) => {
         <div className="rounded bg-main-dark mt-2 mb-3 mx-2">
             <div className="d-flex flex-row justify-content-between">
                 <div className="d-flex flex-row ps-3 py-3">
+                    {/*search box*/}
                     <div className="bg-white rounded w-auto">
                         <input
                             name="searchText"
@@ -17,11 +18,13 @@ const MainNavbar = (props) => {
                         />
                     </div>
 
+                    {/*load spinner*/}
                     <div className="d-flex align-items-center ms-2">
                         <div className="spinner-border text-primary" role="status"
                              style={{visibility: props.isLoading ? "visible" : "hidden"}}/>
                     </div>
 
+                    {/*num load changer*/}
                     <div className="d-flex flex-row ms-4">
                         <label className="col-form-label text-white me-1">cards to load: </label>
                         <select
@@ -39,6 +42,7 @@ const MainNavbar = (props) => {
                     </div>
                 </div>
 
+                {/*theme change button*/}
                 <div className="d-flex align-self-center me-3" onClick={props.changeTheme}>
                     {props.theme === "dark"
                         ? <Sun size={50} color="white"/>
